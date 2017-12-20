@@ -5,9 +5,9 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
 #ZSH_THEME="agnoster"
-ZSH_THEME="powerline"
+ZSH_THEME="robbyrussell"
+#ZSH_THEME="powerline"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -45,13 +45,17 @@ ZSH_THEME="powerline"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker archlinux vagrant z svn gradle)
+# Example format: plugins=(rails git textmate ruby lighthouse)# Add wisely, as too many plugins slow down shell startup.
+plugins=(git docker archlinux vagrant z svn)
 
 # User configuration
+#
+#export EC2_HOME="/home/arnar/apps/ec2-api-tools-1.7.5.1"
+export EC2_URL=http://hybrid.qstack.novomaticls.com/
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export JAVA_HOME="/usr/lib/jvm/default"
+
+export PATH=$HOME/bin:/usr/local/bin:$PATH 
 #export BWBUILD=~/work/Projects/Betware/trunk/Build
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -61,19 +65,8 @@ source $ZSH/oh-my-zsh.sh
 #export LANG=en_GB.UTF8
 export LC_ALL=en_GB.UTF8
 
-# Added by the BTAF install script
-export LD_LIBRARY_PATH=/opt/oracle/instantclient
-export PATH=$PATH:/opt/oracle/instantclient
-export TNS_ADMIN=/opt/oracle/instantclient
-export RUBYOPT=rubygems
-export NLS_LANG=AMERICAN_AMERICA.UTF8
-[ -s "$HOME/.rvm/scripts/rvm" ] && . "$HOME/.rvm/scripts/rvm"
-
-export TERM="xterm-256color"
-
-export JIRA_URL=https://jira.betware.com
-export JIRA_RAPID_BOARD=false
-
+export EDITOR='vim'
+export TERM='xterm-256color'
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
@@ -98,9 +91,10 @@ export JIRA_RAPID_BOARD=false
 #
 alias \
   tunnelator='ssh -L 1522:10.101.164.21:1521 -N -f mm-1.bhs.local' \
+  cattunnel='ssh -L 1522:oracle-1:1521 -N -f hodd@cat-monitor-1' \
   cp='cp -av'\
-  df='df -Th --total' \
-  gradlew='./gradlew --console rich'
+  df='df -Th --total' #\
+  #vim='nvim'
 
 
 #Cowsay
@@ -151,3 +145,4 @@ man() {
         man "$@"
 }
 alias config='/usr/bin/git --git-dir=/home/arnar/.dotfiles/ --work-tree=/home/arnar'
+alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'

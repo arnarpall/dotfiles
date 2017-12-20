@@ -1,7 +1,7 @@
 " always have syntax highlighting in with the gui:
 syntax on
 
-colorscheme molokai
+set background=dark
 
 set hlsearch
 
@@ -18,20 +18,30 @@ set ignorecase
 set noeb vb t_vb=
 
 filetype on            " enables filetype detection
+filetype indent on     " load filetype-specific indent files
 filetype plugin on     " enables filetype specific plugins
 
-
-" have error messages red on white (rather than t'tother way round, which isn't
-" readable in the above font):
-highlight ErrorMsg guibg=White guifg=Red
-
-" XML formating
-map <F2> <Esc>:1,$!xmllint --format -<CR>
-
-au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+" Force  n-number column wrapping when in a git commmit
+au FileType gitcommit set tw=72
 
 nmap <C-V> "+gP
 imap <C-V> <ESC><C-V>i
-vmap <C-C> "+y
+vmap <C-C> "+y" load filetype-specific indent files
 
-call pathogen#infect()
+map <C-n> :NERDTreeToggle<CR>
+
+" call pathogen#infect()
+call plug#begin()
+Plug 'tpope/vim-sensible'
+Plug 'rodjek/vim-puppet', {'for': 'puppet'}
+Plug 'vim-airline/vim-airline'
+Plug 'weynhamz/vim-plugin-minibufexpl'
+
+
+" Colorschemes
+Plug 'sjl/badwolf'
+Plug 'morhetz/gruvbox'
+
+call plug#end()
+
+colorscheme gruvbox
